@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blood Warriors PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+
+body{
+    background:linear-gradient(135deg,#000,#8B0000);
+    color:white;
+    scroll-behavior:smooth;
+}
+
+header{
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    background:black;
+    letter-spacing:2px;
+}
+
+nav{
+    text-align:center;
+    background:#111;
+    padding:10px;
+}
+nav a{
+    color:white;
+    margin:15px;
+    text-decoration:none;
+}
+nav a:hover{color:red;}
+
+section{
+    padding:40px 20px;
+    text-align:center;
+}
+
+.card{
+    background:#111;
+    padding:20px;
+    margin:10px;
+    border-radius:15px;
+    display:inline-block;
+    width:220px;
+    transition:0.5s;
+    box-shadow:0 0 15px red;
+}
+.card:hover{
+    transform:scale(1.1);
+}
+
+button{
+    padding:10px 20px;
+    background:red;
+    border:none;
+    color:white;
+    cursor:pointer;
+    border-radius:8px;
+}
+button:hover{background:darkred;}
+
+input{
+    padding:8px;
+    margin:5px;
+    border-radius:6px;
+    border:none;
+}
+
+#adminPanel{
+    display:none;
+    background:#222;
+    padding:20px;
+    border-radius:10px;
+}
+
+.trophy{
+    font-size:60px;
+    animation:spin 3s infinite linear;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+footer{
+    background:black;
+    padding:15px;
+    text-align:center;
+}
+
+@media(max-width:768px){
+    .card{width:90%;}
+}
+</style>
+</head>
+
+<body>
+
+<header>?? Blood Warriors Bagdona - PRO</header>
+
+<nav>
+<a href="#score">Live Score</a>
+<a href="#players">Players</a>
+<a href="#admin">Admin</a>
+</nav>
+
+<section id="score">
+<h2>?? Live Match Score</h2>
+<h3 id="liveScore">120/3 (15 Overs)</h3>
+<button onclick="updateScore()">Update Score</button>
+</section>
+
+<section id="players">
+<h2>?? Team Players</h2>
+<div id="playerList">
+<div class="card">Aadil - Batsman</div>
+<div class="card">Sameer - Bowler</div>
+</div>
+</section>
+
+<section id="admin">
+<h2>?? Admin Panel</h2>
+<input type="password" id="adminPass" placeholder="Enter Password">
+<button onclick="checkAdmin()">Login</button>
+
+<div id="adminPanel">
+<h3>Add Player</h3>
+<input type="text" id="playerName" placeholder="Player Name">
+<input type="text" id="playerRole" placeholder="Role">
+<button onclick="addPlayer()">Add Player</button>
+</div>
+</section>
+
+<section>
+<h2>?? Championship Goal</h2>
+<div class="trophy">??</div>
+<p>Final jeet ke trophy uthani hai ??</p>
+</section>
+
+<footer>
+© 2026 Blood Warriors | Contact: 9244574914
+</footer>
+
+<script>
+function updateScore(){
+    let runs = Math.floor(Math.random()*200);
+    let wickets = Math.floor(Math.random()*10);
+    let overs = Math.floor(Math.random()*20);
+    document.getElementById("liveScore").innerHTML = runs+"/"+wickets+" ("+overs+" Overs)";
+}
+
+function checkAdmin(){
+    let pass = document.getElementById("adminPass").value;
+    if(pass === "bw123"){
+        document.getElementById("adminPanel").style.display="block";
+        alert("Admin Login Successful");
+    }else{
+        alert("Wrong Password");
+    }
+}
+
+function addPlayer(){
+    let name = document.getElementById("playerName").value;
+    let role = document.getElementById("playerRole").value;
+
+    let div = document.createElement("div");
+    div.className="card";
+    div.innerHTML = name+" - "+role;
+
+    document.getElementById("playerList").appendChild(div);
+}
+</script>
+
+</body>
+</html>
